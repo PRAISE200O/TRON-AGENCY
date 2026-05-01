@@ -483,10 +483,26 @@
         });
 
         // Helper for reliable email redirection
-        function safeOpenGmail(url) {
+        function getEmailLink(target, subject, body = '') {
             const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            const encodedSubject = encodeURIComponent(subject);
+            const encodedBody = encodeURIComponent(body);
+
             if (isMobile) {
-                // window.location.href is more reliable on mobile browsers to avoid popup blocks
+                // mailto: is the only reliable way to trigger the native app on mobile
+                return `mailto:${target}?subject=${encodedSubject}&body=${encodedBody}`;
+            } else {
+                // Gmail web interface for desktop
+                return `https://mail.google.com/mail/?view=cm&fs=1&to=${target}&su=${encodedSubject}&body=${encodedBody}`;
+            }
+        }
+
+        function safeOpenEmail(target, subject, body = '') {
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            const url = getEmailLink(target, subject, body);
+            
+            if (isMobile) {
+                // window.location.assign/href is best for mailto: on mobile
                 window.location.href = url;
             } else {
                 window.open(url, '_blank');
@@ -501,7 +517,7 @@
             if (btn) {
                 btn.addEventListener('click', (e) => {
                     e.preventDefault();
-                    safeOpenGmail(btn.href);
+                    safeOpenEmail('official.tronwebexpertt@gmail.com', 'inquiry for TRON SERVICES');
                 });
             }
         });
@@ -524,19 +540,16 @@
             const vision = visionInput.value;
             
             const target = 'official.tronwebexpertt@gmail.com';
-            const subject = encodeURIComponent('inquiry for TRON SERVICES');
-            const bodyContent = encodeURIComponent(
+            const subject = 'inquiry for TRON SERVICES';
+            const bodyContent = 
                 `TRON AGENCY MISSION BRIEF\n` +
                 `==========================\n` +
                 `CLIENT: ${name}\n` +
                 `EMAIL: ${email}\n\n` +
                 `THE VISION:\n${vision}\n` +
                 `==========================\n` +
-                `--- End of Transmission ---`
-            );
+                `--- End of Transmission ---`;
 
-            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${target}&su=${subject}&body=${bodyContent}`;
- 
             // Visual feedback
             const originalText = transmissionBtn.innerText;
             transmissionBtn.innerText = 'TRANSMISSION INITIALIZED';
@@ -544,8 +557,8 @@
             transmissionBtn.classList.remove('bg-white', 'text-black');
             transmissionBtn.disabled = true;
   
-            // Open Gmail compose window using the safe helper
-            safeOpenGmail(gmailUrl);
+            // Open Email compose window (handles mobile/desktop automatically)
+            safeOpenEmail(target, subject, bodyContent);
 
             // Reset UI after delay
             setTimeout(() => {
