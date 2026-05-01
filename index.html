@@ -7,7 +7,8 @@
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;300;400;700;900&display=swap');
-        
+    
+    
         :root {
             /* === DESIGN SETTINGS FROM MY REFERENCE WEBSITE === */
             /* Paste your reference website link here: https://coded-dev-hazel.vercel.app/ */
@@ -136,7 +137,7 @@
                 <a href="#projects" class="px-8 py-4 bg-white text-black font-bold uppercase tracking-widest rounded-lg hover:bg-[var(--primary-color)] hover:text-white transition-all shadow-xl glow-border-primary">
                     View Projects
                 </a>
-                <a id="hero-get-in-touch" href="official.tronwebexpertt@gmail.com" target="_blank" class="px-8 py-4 glass border border-white/20 text-white font-bold uppercase tracking-widest rounded-lg hover:bg-white/10 transition-all">
+                <a id="hero-get-in-touch" href="https://mail.google.com/mail/?view=cm&fs=1&to=official.tronwebexpertt@gmail.com&su=inquiry%20for%20TRON%20SERVICES" class="px-8 py-4 glass border border-white/20 text-white font-bold uppercase tracking-widest rounded-lg hover:bg-white/10 transition-all focus:ring-2 focus:ring-[var(--primary-color)]">
                     Get In Touch
                 </a>
             </div>
@@ -359,10 +360,9 @@
                     "The SEO work alone brought 300% more organic traffic. Our brand finally feels as premium as our products."
                 </blockquote>
             </div>
-            <!-- Testimonial 3 -->
             <div class="glass glass-card p-8 relative reveal">
                 <div class="flex items-center gap-4 mb-6">
-                    <img src="https://images.unsplash.com/photo-1531123414780-f74242c2b052?auto=format&fit=crop&q=80&w=150&h=150" alt="Sarah Okonkwo" class="w-16 h-16 rounded-full object-cover border-2 border-purple-500/30">
+                    <img src="https://images.unsplash.com/photo-1548250874-dc6cf1dfbfc0?auto=format&fit=crop&q=80&w=150&h=150" alt="Sarah Okonkwo" class="w-16 h-16 rounded-full object-cover border-2 border-purple-500/30">
                     <div>
                         <p class="font-bold text-white uppercase tracking-widest text-sm">Sarah Okonkwo</p>
                         <p class="text-gray-500 text-[10px] font-medium uppercase">Director, Nexus Real Estate</p>
@@ -388,9 +388,9 @@
                     <h2 class="text-5xl font-black text-white italic uppercase tracking-tighter mb-6 leading-none">Ready to dominate?</h2>
                     <p class="text-blue-100 mb-8 text-lg max-w-md">Let's build something extraordinary together. Our team is ready to transform your vision into a digital masterpiece.</p>
                     <div class="flex flex-col gap-4">
-                      <a href="mailto:official.tronwebexpertt@gmail.com" target="_blank" class="flex items-center gap-3 text-white font-bold hover:translate-x-2 transition-transform text-sm sm:text-base">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                        official.tronwebexpertt@gmail.com
+                      <a id="footer-contact-link" href="https://mail.google.com/mail/?view=cm&fs=1&to=official.tronwebexpertt@gmail.com&su=inquiry%20for%20TRON%20SERVICES" class="flex items-center gap-3 text-white font-bold hover:translate-x-2 transition-transform text-sm sm:text-base group">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 group-hover:text-[var(--primary-color)]"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                        <span class="break-all">official.tronwebexpertt@gmail.com</span>
                       </a>
 
                       <div class="flex gap-4 mt-4">
@@ -412,7 +412,7 @@
                 </div>
                 
                 <div class="p-8 lg:p-20">
-                    <form id="contact-form" action="mailto:official.tronwebexpertt@gmail.com" method="POST" enctype="text/plain" class="flex flex-col gap-6">
+                    <form id="contact-form" class="flex flex-col gap-6">
                         <div>
                             <label for="client-name" class="block text-xs font-black uppercase tracking-widest mb-2 text-gray-400">Your Identity</label>
                             <input id="client-name" name="Name" type="text" required class="w-full bg-white/5 border border-white/10 p-4 rounded focus:border-[var(--primary-color)] focus:outline-none transition-all" placeholder="Full Name">
@@ -482,19 +482,27 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        // Hero Get In Touch Logic
+        // Helper for reliable email redirection
+        function safeOpenGmail(url) {
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            if (isMobile) {
+                // window.location.href is more reliable on mobile browsers to avoid popup blocks
+                window.location.href = url;
+            } else {
+                window.open(url, '_blank');
+            }
+        }
+
+        // Hero and Footer Button Logic
         const heroBtn = document.getElementById('hero-get-in-touch');
-        heroBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            const target = 'official.tronwebexpertt@gmail.com';
-            const subject = encodeURIComponent('MISSION BRIEF: Inquiry via TRON AGENCY');
-            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${target}&su=${subject}`;
-            const mailtoUrl = `mailto:${target}?subject=${subject}`;
-            
-            // Try to open Gmail web compose first
-            const win = window.open(gmailUrl, '_blank');
-            if (!win || win.closed || typeof win.closed == 'undefined') {
-                window.location.href = mailtoUrl;
+        const footerLink = document.getElementById('footer-contact-link');
+
+        [heroBtn, footerLink].forEach(btn => {
+            if (btn) {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    safeOpenGmail(btn.href);
+                });
             }
         });
 
@@ -505,12 +513,18 @@
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            const name = document.getElementById('client-name').value;
-            const email = document.getElementById('client-email').value;
-            const vision = document.getElementById('client-vision').value;
+            const nameInput = document.getElementById('client-name');
+            const emailInput = document.getElementById('client-email');
+            const visionInput = document.getElementById('client-vision');
+
+            if (!nameInput || !emailInput || !visionInput) return;
+
+            const name = nameInput.value;
+            const email = emailInput.value;
+            const vision = visionInput.value;
             
             const target = 'official.tronwebexpertt@gmail.com';
-            const subject = encodeURIComponent(`MISSION BRIEF: Inquiry from ${name}`);
+            const subject = encodeURIComponent('inquiry for TRON SERVICES');
             const bodyContent = encodeURIComponent(
                 `TRON AGENCY MISSION BRIEF\n` +
                 `==========================\n` +
@@ -521,26 +535,23 @@
                 `--- End of Transmission ---`
             );
 
-            // Construct the mailto and Gmail links
             const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${target}&su=${subject}&body=${bodyContent}`;
-            const mailtoUrl = `mailto:${target}?subject=${subject}&body=${bodyContent}`;
  
             // Visual feedback
             const originalText = transmissionBtn.innerText;
             transmissionBtn.innerText = 'TRANSMISSION INITIALIZED';
             transmissionBtn.classList.add('bg-emerald-500', 'text-white');
+            transmissionBtn.classList.remove('bg-white', 'text-black');
             transmissionBtn.disabled = true;
- 
-            // Trigger Gmail first, fallback to mailto
-            const win = window.open(gmailUrl, '_blank');
-            if (!win || win.closed || typeof win.closed == 'undefined') {
-                window.location.href = mailtoUrl;
-            }
+  
+            // Open Gmail compose window using the safe helper
+            safeOpenGmail(gmailUrl);
 
             // Reset UI after delay
             setTimeout(() => {
                 transmissionBtn.innerText = originalText;
                 transmissionBtn.classList.remove('bg-emerald-500', 'text-white');
+                transmissionBtn.classList.add('bg-white', 'text-black');
                 transmissionBtn.disabled = false;
                 contactForm.reset();
             }, 3000);
