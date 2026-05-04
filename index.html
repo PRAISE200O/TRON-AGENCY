@@ -137,7 +137,7 @@
                 <a href="#projects" class="px-8 py-4 bg-white text-black font-bold uppercase tracking-widest rounded-lg hover:bg-[var(--primary-color)] hover:text-white transition-all shadow-xl glow-border-primary">
                     View Projects
                 </a>
-                <a id="hero-get-in-touch" href="https://mail.google.com/mail/?view=cm&fs=1&to=official.tronwebexpertt@gmail.com&su=inquiry%20for%20TRON%20SERVICES" class="px-8 py-4 glass border border-white/20 text-white font-bold uppercase tracking-widest rounded-lg hover:bg-white/10 transition-all focus:ring-2 focus:ring-[var(--primary-color)]">
+                <a id="hero-get-in-touch" href="https://mail.google.com/mail/?view=cm&fs=1&to=official.tronwebexpertt@gmail.com,trontech.webresolution@gmail.com&su=inquiry%20for%20TRON%20SERVICES" class="px-8 py-4 glass border border-white/20 text-white font-bold uppercase tracking-widest rounded-lg hover:bg-white/10 transition-all focus:ring-2 focus:ring-[var(--primary-color)]">
                     Get In Touch
                 </a>
             </div>
@@ -387,10 +387,19 @@
                    <div class="relative z-10">
                     <h2 class="text-5xl font-black text-white italic uppercase tracking-tighter mb-6 leading-none">Ready to dominate?</h2>
                     <p class="text-blue-100 mb-8 text-lg max-w-md">Let's build something extraordinary together. Our team is ready to transform your vision into a digital masterpiece.</p>
-                    <div class="flex flex-col gap-4">
-                      <a id="footer-contact-link" href="https://mail.google.com/mail/?view=cm&fs=1&to=official.tronwebexpertt@gmail.com&su=inquiry%20for%20TRON%20SERVICES" class="flex items-center gap-3 text-white font-bold hover:translate-x-2 transition-transform text-sm sm:text-base group">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 group-hover:text-[var(--primary-color)]"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                        <span class="break-all">official.tronwebexpertt@gmail.com</span>
+                    <div class="flex flex-col gap-5">
+                      <a id="footer-contact-link" href="https://mail.google.com/mail/?view=cm&fs=1&to=official.tronwebexpertt@gmail.com,trontech.webresolution@gmail.com&su=inquiry%20for%20TRON%20SERVICES" class="flex flex-col gap-1 group">
+                        <div class="flex items-center gap-3 text-white font-bold hover:translate-x-2 transition-transform text-sm sm:text-base">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 group-hover:text-[var(--primary-color)]"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                          <span class="break-all">official.tronwebexpertt@gmail.com</span>
+                        </div>
+                      </a>
+
+                      <a id="footer-contact-link-2" href="https://mail.google.com/mail/?view=cm&fs=1&to=trontech.webresolution@gmail.com&su=inquiry%20for%20TRON%20SERVICES" class="flex flex-col gap-1 group">
+                        <div class="flex items-center gap-3 text-white font-bold hover:translate-x-2 transition-transform text-sm sm:text-base">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 group-hover:text-[var(--primary-color)]"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                          <span class="break-all">trontech.webresolution@gmail.com</span>
+                        </div>
                       </a>
 
                       <div class="flex gap-4 mt-4">
@@ -512,12 +521,13 @@
         // Hero and Footer Button Logic
         const heroBtn = document.getElementById('hero-get-in-touch');
         const footerLink = document.getElementById('footer-contact-link');
+        const footerLink2 = document.getElementById('footer-contact-link-2');
 
-        [heroBtn, footerLink].forEach(btn => {
+        [heroBtn, footerLink, footerLink2].forEach(btn => {
             if (btn) {
                 btn.addEventListener('click', (e) => {
                     e.preventDefault();
-                    safeOpenEmail('official.tronwebexpertt@gmail.com', 'inquiry for TRON SERVICES');
+                    safeOpenEmail('official.tronwebexpertt@gmail.com,trontech.webresolution@gmail.com', 'inquiry for TRON SERVICES');
                 });
             }
         });
@@ -539,7 +549,7 @@
             const email = emailInput.value;
             const vision = visionInput.value;
             
-            const target = 'official.tronwebexpertt@gmail.com';
+            const target = 'official.tronwebexpertt@gmail.com,trontech.webresolution@gmail.com';
             const subject = 'inquiry for TRON SERVICES';
             const bodyContent = 
                 `TRON AGENCY MISSION BRIEF\n` +
